@@ -3,4 +3,4 @@ scipy
 nltk
 razdel
 pandas
-    
+pymorphy2
