@@ -10,6 +10,9 @@ import pymorphy2
 import string
 import pandas as pd
 
+from .loggers.declogger import FunctionLogger
+logger = FunctionLogger(__name__)
+
 class Corpora():
     """
     
@@ -19,7 +22,7 @@ class Corpora():
     Also have methods for iterating and getting item.
     
     """
-    
+    @logger
     def __init__(self, corpora_file, file_type='csv', tokenizer=nltk.WordPunctTokenizer(), 
                  column = 'annotation', lemmatizer = pymorphy2.MorphAnalyzer(), lang="ru"):
         
@@ -33,23 +36,22 @@ class Corpora():
         
         self.read_corpora()
     
+    @logger
     def read_corpora(self):
         """Function for reading file with texts corpora"""
         
         if self._file_type == 'csv':
             
-            try:
-                
+            try:     
                 data = pd.read_csv(self._corpora_file, sep="|")
                 texts = data[self._text_column]
                 for text in texts:
                     self._texts.append({"text_data":text, "meta":[]})
             
-            except:
-                
+            except:     
                 print("Error: Wrong filename. Check the path to file with texts.")
                 
-                
+    @logger            
     def clean_texts(self):
         """Cleans texts from punctuation and numerics"""
         
@@ -61,7 +63,8 @@ class Corpora():
                     text = text.replace(sym, "")
             
             text_dict["text_data"] = text
-            
+    
+    @logger
     def lemmatize_texts(self, fast=True):
         """
         
@@ -82,7 +85,8 @@ class Corpora():
                 lemmatized_text = " ".join([self._lemmatizer.parse(token)[0].normal_form for token in tokenized_text if token.isalpha()])                 
             
             text_dict["text_data"] = lemmatized_text
-            
+    
+    @logger
     def delete_stopwords(self, stopwords_file='ru_stopwords.txt' ):
         """
         
@@ -97,7 +101,7 @@ class Corpora():
             tokenized_text = [token for token in tokenized_text if token+'\n' not in stopwords]
             text_dict["text_data"] = " ".join(tokenized_text)
             
-            
+    @logger        
     def set_tokenizer(self, tokenizer):
         """Setter for tokenizer. Default is nltk.WordPunctTokenizer()."""
         self._tokenizer = tokenizer
@@ -115,4 +119,3 @@ class Corpora():
     def __iter__(self):
         for text in self._texts:
             yield text
-

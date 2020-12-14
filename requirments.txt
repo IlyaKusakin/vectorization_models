@@ -4,3 +4,4 @@ nltk
 razdel
 pandas
 pymorphy2
+logging

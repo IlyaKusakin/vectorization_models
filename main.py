@@ -6,12 +6,16 @@ Main module of programm for words vectorizing.
 """
 import numpy as np
 
+from source.corpora import Corpora
+from source.word2vec import Word2Vec
+from source.tfidf import TfIdfVectorizer
+
+
 def cosine_similarity(vec1,vec2):
+    """Function for calcilating cosine similarity between two numpy vector-arrays."""
     num = abs(vec1@vec2) + 1e-2
     return 1 - num/(np.sum(vec1**2) * np.sum(vec2**2) + 1e-2)
 
-from source.corpora import Corpora
-from source.Vectorizers import TfIdfVectorizer, Word2Vec
 
 if __name__ == '__main__':
     
@@ -101,5 +105,3 @@ if __name__ == '__main__':
         #tfidf.download_to_json()
     
     print('End.')
-    
-    
