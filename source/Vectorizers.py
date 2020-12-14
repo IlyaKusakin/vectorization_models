@@ -5,7 +5,7 @@ Source module with Vectorizer-family classes
 @author: Kusakin Ilya
 """
 
-from source.corpora import Corpora 
+from .corpora import Corpora 
 
 import numpy as np
 from scipy.sparse import lil_matrix
@@ -13,7 +13,6 @@ import nltk
 import re
 import razdel
 from abc import abstractmethod
-from tqdm.notebook import tqdm
 from threading import Thread
 import json
 import pickle
@@ -265,7 +264,6 @@ class Word2Vec(_Vectorizer):
                 idx_tokens =  [self._word2ind[token] 
                                if token in self._word2ind else self._word2ind["<UNK>"] for token in tokens]
 
-
                 for side_idx in range(self._window_size//2):
                     
                     left_side = idx_tokens[side_idx+1 : (self._window_size//2)+side_idx+1]
@@ -327,7 +325,7 @@ class Word2Vec(_Vectorizer):
         for context_token in context_tokens:
             
             prob_numerator = np.exp(self._V[center_token] @ self._U)
-            prob_denominator = np.sum(prob_numerator)
+            prob_denominator = np.sum(prob_numerator) + 1e-2
 
             grad = self._U[:, context_token] - np.sum(prob_numerator * self._U / prob_denominator)
             self._V[center_token] -= lr * grad / len(context_tokens)

@@ -6,16 +6,16 @@ Main module of programm for words vectorizing.
 """
 import numpy as np
 
-def cosine_distance(vec1,vec2):
-    num = abs(vec1@vec2)
-    return num/(np.sum(vec1**2) * np.sum(vec2**2))
+def cosine_similarity(vec1,vec2):
+    num = abs(vec1@vec2) + 1e-2
+    return 1 - num/(np.sum(vec1**2) * np.sum(vec2**2) + 1e-2)
 
 from source.corpora import Corpora
 from source.Vectorizers import TfIdfVectorizer, Word2Vec
 
 if __name__ == '__main__':
     
-    print("Hello, this is a program for word vectorizing, type a filename with dataset.")
+    print("Hello, this is a program for words vectorization, type a filename with dataset.")
         
     filename = input("File with dataset: ")
     
@@ -25,6 +25,7 @@ if __name__ == '__main__':
     corpora.clean_texts()
     corpora.delete_stopwords()
     
+    print('-' * 60)
     print("Choose vectorizer model.")
     vec_type = ''
     while vec_type != 'Word2Vec' and vec_type != 'TfIdf':
@@ -39,6 +40,8 @@ if __name__ == '__main__':
         word_1 = input("Word #1: ")
         word_2 = input("Word #2: ")
         
+        print('-' * 60)
+        
         print("Fit all model or only two neccessary words?")
         
         fit_all = ''
@@ -52,8 +55,10 @@ if __name__ == '__main__':
             
             vec_1 = w2v[word_1]
             vec_2 = w2v[word_2]
-            print("cosdistance = ", round(cosine_distance(vec_1, vec_2), 8))
+            print("cossim = ", cosine_similarity(vec_1, vec_2))
             
+            
+            print('-' * 60)
             print("Downloading vectors to pickle file...")
             w2v.download_to_pickle()
             print("Saving vectors to json file...")
@@ -63,21 +68,22 @@ if __name__ == '__main__':
             
             vec_1 = w2v.get_fit_vector(word_1)
             vec_2 = w2v.get_fit_vector(word_2)
-            print("cosdistance = ", round(cosine_distance(vec_1, vec_2), 8))
+            print("cossim = ", cosine_similarity(vec_1, vec_2))
         
     if vec_type == "TfIdf":
         
         print("TfIdf model initialization...")
         tfidf = TfIdfVectorizer(corpora)
         
-        print("Calculaing document frequency...")
+        print("Calculating document frequency...")
         tfidf.calc_df()
-        print("Calculaing turn frequency...")
+        print("Calculating turn frequency...")
         tfidf.calc_tf()
         
         print("Creating dictionary of vectors...")
         tfidf.create_word2vec()
         
+        print('-' * 60)
         
         print("Enter 2 word for calculating cosine distance between them.")
         word_1 = input("Word #1: ")
@@ -85,12 +91,14 @@ if __name__ == '__main__':
         
         vec_1 = tfidf[word_1]
         vec_2 = tfidf[word_2]
-        print("cosdistance = ", cosine_distance(vec_1, vec_2))
+        print("cossim = ", cosine_similarity(vec_1, vec_2))
+        
+        print('-' * 60)
         
         print("Downloading vectors to pickle file...")
-        tfidf.download_to_pickle()
+        #tfidf.download_to_pickle()
         print("Saving vectors to json file...")
-        tfidf.download_to_json()
+        #tfidf.download_to_json()
     
     print('End.')
     
