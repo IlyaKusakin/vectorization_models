@@ -6,3 +6,7 @@ Run to install all neccessary libs:
 ```
 pip install -r requirements.txt
 ```
+
+Example of calculating cosine similarity:
+
+![Screenshot](https://github.com/IlyaKusakin/vectorization_models/blob/main/images/console.jpg)
