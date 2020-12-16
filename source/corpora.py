@@ -87,7 +87,7 @@ class Corpora():
             text_dict["text_data"] = lemmatized_text
     
     @logger
-    def delete_stopwords(self, stopwords_file='ru_stopwords.txt' ):
+    def delete_stopwords(self, stopwords_file='data\\ru_stopwords.txt' ):
         """
         
         Function for deleting stopwords from texts in corpora.
