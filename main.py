@@ -17,10 +17,6 @@ if __name__ == '__main__':
     
     parser.add_argument("--corpora", default="data\\corpora.csv", type=str, 
                         help="Name of input csv-file with corpora of texts.")
-    
-    pasrser.add_argument("--column", default="annotation", type=str,
-                         help="""Name of column in csv-file with texts, 
-                         default is 'annotaion' for 'corpora.csv' file.""")
 
     parser.add_argument("--output_file", default="vectors.json", type=str,
                         help="Name of output json-file with values of word-vectors.")
@@ -29,19 +25,16 @@ if __name__ == '__main__':
                         required=True, type=str, help="Type of vectorizer mofel.")
 
     parser.add_argument("--vocab_size", default=1000, type=int, 
-                        help="""Number of words that will be included into vocabulary, 
-                        1000 is default.""")
+                        help="Number of words that will be included into vocabulary, 1000 is default.")
     
     parser.add_argument("--vector_size", default=100, type=int, 
-                        help="""Size of vectors that will be calculated via Word2Vec model, 
-                        100 is default.""")
+                        help="Size of vectors that will be calculated via Word2Vec model, 100 is default.")
     
     parser.add_argument("--window", default=5, type=int, 
                         help="Window size for Word2Vec algorythm, 5 is default.")
     
     parser.add_argument("--lr", default=1e-1, type=float, 
-                        help="""Learning rate for backpropagation algorythm in Word2Vec model, 
-                        1 is default""")
+                        help="Learning rate for backpropagation algorythm in Word2Vec model, 1 is default")
     
     parser.add_argument("--speed", default=10, type=int, 
                         help="""Number of word's neighbours that calculates in Word2Vec.
@@ -74,7 +67,7 @@ if __name__ == '__main__':
         
     else:
         print("TfIdf model initialization...")
-        tfidf = TfIdfVectorizer(corpora, vocab_size)
+        tfidf = TfIdfVectorizer(corpora, vocab_size=vocab_size)
         
         print("Calculating document frequency...")
         tfidf.calc_df()
@@ -84,6 +77,5 @@ if __name__ == '__main__':
         
         tfidf.download_to_json(output_filename)
         print("Vectors were saved to " + output_filename)
-        
-    
+          
     print('End!')

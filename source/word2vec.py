@@ -25,8 +25,8 @@ class Word2Vec(_Vectorizer):
     
     """
     @logger
-    def __init__(self, corpora, vector_size=300, window_size=5 ):
-        super().__init__(corpora)
+    def __init__(self, corpora, vocab_size=1000, vector_size=300, window_size=5 ):
+        super().__init__(corpora, vocab_size)
         
         self.__name__ = 'w2v'
         self._vector_size = vector_size

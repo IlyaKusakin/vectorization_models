@@ -32,9 +32,9 @@ class FunctionLogger():
                 self.logger.info(log_msg)
                 
             except Exception as e:
-                msg = ' in function ' + func.__name__
-                self.logger.error(e + msg)
-        
+                msg = 'in function ' + func.__name__
+                self.logger.error(e)
+                self.logger.error(msg)
         return logging
          
         

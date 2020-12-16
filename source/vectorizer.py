@@ -18,7 +18,7 @@ class _Vectorizer():
     and dict word2ind/ind2word.
     
     """
-    def __init__(self, corpora, vocab_size = 1000, tokenizer = nltk.WordPunctTokenizer()):
+    def __init__(self, corpora, vocab_size=1000, tokenizer=nltk.WordPunctTokenizer()):
     
         self._corpora = corpora
         self._tokenizer = tokenizer

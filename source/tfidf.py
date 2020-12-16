@@ -25,8 +25,8 @@ class TfIdfVectorizer(_Vectorizer):
     
     """
     @logger
-    def __init__(self, corpora, vector_size=300):
-        super().__init__(corpora)
+    def __init__(self, corpora, vocab_size=1000, vector_size=300):
+        super().__init__(corpora, vocab_size)
         
         self.__name__ = 'TfIdf'
         self._vector_size = vector_size
