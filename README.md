@@ -1,5 +1,6 @@
 # Console app for word vectorization via Word2Vec and TF-IDF
 Implemented on numpy calculations and lil_matrixes from scipy library.
+
 Json-file with vectors dictionary generates as result of script running.
 
 ### Run to install all neccessary libs:
