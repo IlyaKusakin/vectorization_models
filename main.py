@@ -1,107 +1,89 @@
 # -*- coding: utf-8 -*-
 """
-Main module of programm for words vectorizing.
- 
+Main module of console application.
+
 @author: Kusakin Ilya
 """
-import numpy as np
 
+import argparse
 from source.corpora import Corpora
 from source.word2vec import Word2Vec
 from source.tfidf import TfIdfVectorizer
 
-
-def cosine_similarity(vec1,vec2):
-    """Function for calcilating cosine similarity between two numpy vector-arrays."""
-    num = abs(vec1@vec2) + 1e-2
-    return 1 - num/(np.sum(vec1**2) * np.sum(vec2**2) + 1e-2)
-
-
 if __name__ == '__main__':
     
-    print("Hello, this is a program for words vectorization, type a filename with dataset.")
-        
-    filename = input("File with dataset: ")
+    parser = argparse.ArgumentParser(description=""" This is the console
+                                     application for words vectorization.""")
     
-    print("Preprocessing of texts...")
-    corpora = Corpora(filename)
+    parser.add_argument("--corpora", default="data\\corpora.csv", type=str, 
+                        help="Name of input csv-file with corpora of texts.")
+    
+    pasrser.add_argument("--column", default="annotation", type=str,
+                         help="""Name of column in csv-file with texts, 
+                         default is 'annotaion' for 'corpora.csv' file.""")
+
+    parser.add_argument("--output_file", default="vectors.json", type=str,
+                        help="Name of output json-file with values of word-vectors.")
+    
+    parser.add_argument("--model", choices=["Word2Vec", "TFIDF"],
+                        required=True, type=str, help="Type of vectorizer mofel.")
+
+    parser.add_argument("--vocab_size", default=1000, type=int, 
+                        help="""Number of words that will be included into vocabulary, 
+                        1000 is default.""")
+    
+    parser.add_argument("--vector_size", default=100, type=int, 
+                        help="""Size of vectors that will be calculated via Word2Vec model, 
+                        100 is default.""")
+    
+    parser.add_argument("--window", default=5, type=int, 
+                        help="Window size for Word2Vec algorythm, 5 is default.")
+    
+    parser.add_argument("--lr", default=1e-1, type=float, 
+                        help="""Learning rate for backpropagation algorythm in Word2Vec model, 
+                        1 is default""")
+    
+    parser.add_argument("--speed", default=10, type=int, 
+                        help="""Number of word's neighbours that calculates in Word2Vec.
+                        Directly impacts on computing time, 10 is default.""")
+    
+    args = parser.parse_args()
+    input_filename = args.corpora
+    model = args.model
+    output_filename = args.output_file 
+    vector_size = args.vector_size
+    vocab_size = args.vocab_size
+    window = args.window
+    lr = args.lr
+    speed = args.speed
+    
+    print("Data preprocessing...")
+    corpora = Corpora(input_filename)
     corpora.lemmatize_texts()
     corpora.clean_texts()
     corpora.delete_stopwords()
     
-    print('-' * 60)
-    print("Choose vectorizer model.")
-    vec_type = ''
-    while vec_type != 'Word2Vec' and vec_type != 'TfIdf':
-        vec_type = input("Type 'Word2Vec' or 'TfIdf': ")
-    
-    if vec_type == "Word2Vec":
-        
+    if model == "Word2Vec":
         print("Word2Vec model initialization...")
-        w2v = Word2Vec(corpora)
-        
-        print("Enter 2 word for calculating cosine distance between them.")
-        word_1 = input("Word #1: ")
-        word_2 = input("Word #2: ")
-        
-        print('-' * 60)
-        
-        print("Fit all model or only two neccessary words?")
-        
-        fit_all = ''
-        while fit_all != 'all' and fit_all != "two": 
-            fit_all = input("Type 'all' or 'two': ")
-        
-        if fit_all == 'all':
+        w2v = Word2Vec(corpora, vector_size=vector_size, vocab_size=vocab_size, window_size=window)
+        print("Word2Vec is fitting...")
+        w2v.fit(lr,speed)
             
-            print("Word2Vec model is fitting, please wait...")      
-            w2v.fit(speed=15)
-            
-            vec_1 = w2v[word_1]
-            vec_2 = w2v[word_2]
-            print("cossim = ", cosine_similarity(vec_1, vec_2))
-            
-            
-            print('-' * 60)
-            print("Downloading vectors to pickle file...")
-            w2v.download_to_pickle()
-            print("Saving vectors to json file...")
-            w2v.download_to_json()
+        w2v.download_to_json(output_filename)
+        print("Vectors were saved to " + output_filename)
         
-        else:
-            
-            vec_1 = w2v.get_fit_vector(word_1)
-            vec_2 = w2v.get_fit_vector(word_2)
-            print("cossim = ", cosine_similarity(vec_1, vec_2))
-        
-    if vec_type == "TfIdf":
-        
+    else:
         print("TfIdf model initialization...")
-        tfidf = TfIdfVectorizer(corpora)
+        tfidf = TfIdfVectorizer(corpora, vocab_size)
         
         print("Calculating document frequency...")
         tfidf.calc_df()
         print("Calculating turn frequency...")
         tfidf.calc_tf()
-        
-        print("Creating dictionary of vectors...")
         tfidf.create_word2vec()
         
-        print('-' * 60)
+        tfidf.download_to_json(output_filename)
+        print("Vectors were saved to " + output_filename)
         
-        print("Enter 2 word for calculating cosine distance between them.")
-        word_1 = input("Word #1: ")
-        word_2 = input("Word #2: ")
-        
-        vec_1 = tfidf[word_1]
-        vec_2 = tfidf[word_2]
-        print("cossim = ", cosine_similarity(vec_1, vec_2))
-        
-        print('-' * 60)
-        
-        print("Downloading vectors to pickle file...")
-        #tfidf.download_to_pickle()
-        print("Saving vectors to json file...")
-        #tfidf.download_to_json()
     
-    print('End.')
+    print('End!')
