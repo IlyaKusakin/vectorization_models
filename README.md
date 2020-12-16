@@ -11,4 +11,3 @@ Run to test the code:
 ```
 pytest unit_tests.py
 ```
-![](https://github.com/IlyaKusakin/vectorization_models/blob/main/images/running_tests.jpg)
