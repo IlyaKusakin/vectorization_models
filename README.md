@@ -6,3 +6,8 @@ Run to install all neccessary libs:
 ```
 pip install -r requirements.txt
 ```
+
+Run to test the code:
+```
+pytest unit_tests.py
+```
