@@ -9,37 +9,29 @@ from source.word2vec import Word2Vec
 from source.tfidf import TfIdfVectorizer 
 
 stopwords_file = 'data\\ru_stopwords.txt'
-
-"""
-corpora_file = 'data\\corpora.csv'
-stopwords_file = 'data\\ru_stopwords.txt'
-
-@pytest.fixture(scope='module')
-def corpora_load():
-    return Corpora(corpora_file)    
-"""    
-def test_read_corpora(corpora_load):
-    corpora = corpora_load
+    
+def test_read_corpora(load_corpora):
+    corpora = load_corpora
     assert len(corpora) > 0
     
-def test_delete_stopwords(corpora_load):
-    corpora = corpora_load
+def test_delete_stopwords(load_corpora):
+    corpora = load_corpora
     corpora.delete_stopwords()
     stopword = open(stopwords_file, 'r', encoding='UTF-8').readlines()[-1].rstrip()
     
     for text_dict in corpora:
         assert stopword not in text_dict["text_data"]
 
-def test_clean_texts(corpora_load):
-    corpora = corpora_load
+def test_clean_texts(load_corpora):
+    corpora = load_corpora
     corpora.clean_texts()
     
     for text_dict in corpora:
         assert '.' not in text_dict["text_data"]
         assert '1' not in text_dict["text_data"]
         
-def test_vectorizer_dicts(corpora_load):
-    corpora = corpora_load
+def test_vectorizer_dicts(load_corpora):
+    corpora = load_corpora 
     word2vec = Word2Vec(corpora)
     tfidf = TfIdfVectorizer(corpora)
     

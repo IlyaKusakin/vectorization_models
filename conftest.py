@@ -10,7 +10,7 @@ from source.corpora import Corpora
 corpora_file = 'data\\corpora.csv'
 
 @pytest.fixture(scope='module')
-def corpora_load():
+def load_corpora():
     return Corpora(corpora_file)    
 
 
