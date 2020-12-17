@@ -44,3 +44,64 @@
 2020-12-16 19:26:17,602 | source.word2vec | INFO | __init__ function was called.
 2020-12-16 19:26:17,701 | source.word2vec | INFO | fit_vector function was called.
 2020-12-16 19:26:22,730 | source.word2vec | INFO | download_to_json function was called.
+2020-12-17 22:39:54,495 | pymorphy2.opencorpora_dict.wrapper | INFO | Loading dictionaries from C:\Users\PS42\anaconda3\lib\site-packages\pymorphy2_dicts\data
+2020-12-17 22:39:54,557 | pymorphy2.opencorpora_dict.wrapper | INFO | format: 2.4, revision: 393442, updated: 2015-01-17T16:03:56.586168
+2020-12-17 22:39:55,033 | source.corpora | INFO | read_corpora function was called.
+2020-12-17 22:39:55,033 | source.corpora | INFO | __init__ function was called.
+2020-12-17 22:44:13,559 | pymorphy2.opencorpora_dict.wrapper | INFO | Loading dictionaries from C:\Users\PS42\anaconda3\lib\site-packages\pymorphy2_dicts\data
+2020-12-17 22:44:13,605 | pymorphy2.opencorpora_dict.wrapper | INFO | format: 2.4, revision: 393442, updated: 2015-01-17T16:03:56.586168
+2020-12-17 22:44:14,065 | source.corpora | INFO | read_corpora function was called.
+2020-12-17 22:44:14,065 | source.corpora | INFO | __init__ function was called.
+2020-12-17 22:47:16,452 | pymorphy2.opencorpora_dict.wrapper | INFO | Loading dictionaries from C:\Users\PS42\anaconda3\lib\site-packages\pymorphy2_dicts\data
+2020-12-17 22:47:16,483 | pymorphy2.opencorpora_dict.wrapper | INFO | format: 2.4, revision: 393442, updated: 2015-01-17T16:03:56.586168
+2020-12-17 22:47:16,953 | source.corpora | INFO | read_corpora function was called.
+2020-12-17 22:47:16,954 | source.corpora | INFO | __init__ function was called.
+2020-12-17 22:47:59,869 | pymorphy2.opencorpora_dict.wrapper | INFO | Loading dictionaries from C:\Users\PS42\anaconda3\lib\site-packages\pymorphy2_dicts\data
+2020-12-17 22:47:59,916 | pymorphy2.opencorpora_dict.wrapper | INFO | format: 2.4, revision: 393442, updated: 2015-01-17T16:03:56.586168
+2020-12-17 22:48:00,377 | source.corpora | INFO | read_corpora function was called.
+2020-12-17 22:48:00,377 | source.corpora | INFO | __init__ function was called.
+2020-12-17 22:48:46,974 | pymorphy2.opencorpora_dict.wrapper | INFO | Loading dictionaries from C:\Users\PS42\anaconda3\lib\site-packages\pymorphy2_dicts\data
+2020-12-17 22:48:47,017 | pymorphy2.opencorpora_dict.wrapper | INFO | format: 2.4, revision: 393442, updated: 2015-01-17T16:03:56.586168
+2020-12-17 22:48:47,452 | source.corpora | INFO | read_corpora function was called.
+2020-12-17 22:48:47,452 | source.corpora | INFO | __init__ function was called.
+2020-12-17 22:48:59,986 | source.corpora | INFO | delete_stopwords function was called.
+2020-12-17 22:49:00,308 | source.corpora | INFO | clean_texts function was called.
+2020-12-17 22:49:08,259 | source.corpora | INFO | lemmatize_texts function was called.
+2020-12-17 22:49:08,542 | source.corpora | INFO | clean_texts function was called.
+2020-12-17 22:49:19,287 | source.corpora | INFO | delete_stopwords function was called.
+2020-12-17 22:49:23,284 | source.word2vec | INFO | calc_context function was called.
+2020-12-17 22:49:23,284 | source.word2vec | INFO | __init__ function was called.
+2020-12-17 22:49:31,063 | source.corpora | INFO | lemmatize_texts function was called.
+2020-12-17 22:49:31,344 | source.corpora | INFO | clean_texts function was called.
+2020-12-17 22:49:42,059 | source.corpora | INFO | delete_stopwords function was called.
+2020-12-17 22:49:42,990 | source.tfidf | INFO | __init__ function was called.
+2020-12-17 22:52:32,674 | pymorphy2.opencorpora_dict.wrapper | INFO | Loading dictionaries from C:\Users\PS42\anaconda3\lib\site-packages\pymorphy2_dicts\data
+2020-12-17 22:52:32,721 | pymorphy2.opencorpora_dict.wrapper | INFO | format: 2.4, revision: 393442, updated: 2015-01-17T16:03:56.586168
+2020-12-17 22:52:33,204 | source.corpora | INFO | read_corpora function was called.
+2020-12-17 22:52:33,204 | source.corpora | INFO | __init__ function was called.
+2020-12-17 22:52:45,594 | source.corpora | INFO | delete_stopwords function was called.
+2020-12-17 22:52:46,247 | source.corpora | INFO | clean_texts function was called.
+2020-12-17 22:52:53,940 | source.corpora | INFO | lemmatize_texts function was called.
+2020-12-17 22:52:54,218 | source.corpora | INFO | clean_texts function was called.
+2020-12-17 22:53:04,871 | source.corpora | INFO | delete_stopwords function was called.
+2020-12-17 22:53:08,845 | source.word2vec | INFO | calc_context function was called.
+2020-12-17 22:53:08,845 | source.word2vec | INFO | __init__ function was called.
+2020-12-17 22:53:16,565 | source.corpora | INFO | lemmatize_texts function was called.
+2020-12-17 22:53:16,847 | source.corpora | INFO | clean_texts function was called.
+2020-12-17 22:53:27,607 | source.corpora | INFO | delete_stopwords function was called.
+2020-12-17 22:53:28,549 | source.tfidf | INFO | __init__ function was called.
+2020-12-17 22:54:35,028 | pymorphy2.opencorpora_dict.wrapper | INFO | Loading dictionaries from C:\Users\PS42\anaconda3\lib\site-packages\pymorphy2_dicts\data
+2020-12-17 22:54:35,071 | pymorphy2.opencorpora_dict.wrapper | INFO | format: 2.4, revision: 393442, updated: 2015-01-17T16:03:56.586168
+2020-12-17 22:54:35,546 | source.corpora | INFO | read_corpora function was called.
+2020-12-17 22:54:35,546 | source.corpora | INFO | __init__ function was called.
+2020-12-17 22:54:47,980 | source.corpora | INFO | delete_stopwords function was called.
+2020-12-17 22:54:48,304 | source.corpora | INFO | clean_texts function was called.
+2020-12-17 22:54:56,062 | source.corpora | INFO | lemmatize_texts function was called.
+2020-12-17 22:54:56,326 | source.corpora | INFO | clean_texts function was called.
+2020-12-17 22:55:07,001 | source.corpora | INFO | delete_stopwords function was called.
+2020-12-17 22:55:10,974 | source.word2vec | INFO | calc_context function was called.
+2020-12-17 22:55:10,974 | source.word2vec | INFO | __init__ function was called.
+2020-12-17 22:55:18,691 | source.corpora | INFO | lemmatize_texts function was called.
+2020-12-17 22:55:18,978 | source.corpora | INFO | clean_texts function was called.
+2020-12-17 22:55:29,706 | source.corpora | INFO | delete_stopwords function was called.
+2020-12-17 22:55:30,662 | source.tfidf | INFO | __init__ function was called.
